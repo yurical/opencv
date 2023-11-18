@@ -1101,6 +1101,27 @@ CV__DNN_INLINE_NS_BEGIN
         static Ptr<LayerNormLayer> create(const LayerParams& params);
     };
 
+    /**
+     * @brief Non-maximum-suppression layer from https://github.com/onnx/onnx/blob/master/docs/Operators.md#NonMaxSuppression.
+     * 
+     * It works with only one class of bboxes.
+     */
+    class CV_EXPORTS NonMaxSuppressionLayer : public Layer
+    {
+    public:
+        // attributes
+        int center_point_box;
+        // inputs
+        int max_output_boxes_per_class;
+        float iou_threshold;
+        float score_threshold;
+        // limits output
+        int keep_top_k;
+        int top_k;
+
+        static Ptr<NonMaxSuppressionLayer> create(const LayerParams& params);
+    };
+
 //! @}
 //! @}
 CV__DNN_INLINE_NS_END
